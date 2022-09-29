@@ -1,0 +1,20 @@
+{
+  "name": "water-tank-problem",
+  "version": "1.0.0",
+  "description": "Compute water area given wall blocks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ghm:2brownc/Water-Tank-Problem.git"
+  },
+  "author": "brown",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^29.1.0",
+    "typescript-language-server": "^2.0.0",
+    "vscode-langservers-extracted": "^4.4.0"
+  }
+}
