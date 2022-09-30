@@ -73,7 +73,7 @@ auto-format = true
 name = "html"
 scope = "text.html.basic"
 injection-regex = "html"
-file-types = ["html"]
+file-types = ["html", "handlebars"]
 roots = []
 language-server = { command = "node_modules/.bin/vscode-html-language-server", args = ["--stdio"] }
 config = { "provideFormatter" = true }
