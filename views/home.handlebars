@@ -1,0 +1,89 @@
+<h1>Water Tank Problem</h1>
+
+<div>
+	<div class="inputSection">
+		<form id="inputForm">
+			<label for="blockValues">
+				Enter Block Levels:
+			</label>
+			<input id="formValues" />
+			<button type="button" id="formButton">
+				Calculate Water Levels
+			</button>
+		</form>
+	</div>
+
+	<hr />
+
+	<div class="outputSection">
+		<div>
+			<p id="answerText">
+			</p>
+		</div>
+		<div>
+			<svg height="40%" width="100%" id="blocks-svg" viewbox="0 0 120 120">
+			</svg>
+		</div>
+		<div>
+			<svg height="40%" width="100%" id="water-svg" viewbox="0 0 120 120">
+			</svg>
+		</div>
+	</div>
+</div>
+
+<!--
+
+<script src="/utils/svg.js"></script>
+<script src="/utils/waterTank.js"></script>
+
+-->
+
+<script type="module">
+	import {addBlocks} from '/utils/svg.js';
+	import {waterLevels} from '/utils/waterLevels.js';
+
+	function getWaterLevels() {
+		// clear the SVG
+		const blocksSVG = document.querySelector("#blocks-svg");
+		const waterSVG = document.querySelector("#water-svg");
+		blocksSVG.innerHTML = "";
+		waterSVG.innerHTML = "";
+
+		const blockValues = document.querySelector("#formValues");
+		const blocks = blockValues.value.split(',').map(a => parseInt(a));
+		const water = waterLevels(blocks);
+		const maxHeight = Math.max(...blocks);
+
+		// input SVG
+		addBlocks(blocks, "grey", maxHeight, blocksSVG);
+		addBlocks(water, "blue", maxHeight, blocksSVG);
+
+		// output SVG
+		addBlocks(water, "blue", maxHeight, waterSVG);
+
+		// answer text
+		const totalWaterUnits = water.reduce((value, total) => {
+			return total + value;
+		}, 0);
+
+		const answerText = document.querySelector("#answerText");
+		const textNode = document.createTextNode(
+			`Total Units of Water: ${totalWaterUnits}`
+		);
+
+		answerText.appendChild(textNode);
+	}
+
+	/*
+		listen to the "Calcuate Water Levels"
+		button in the input section form
+	*/
+	document.getElementById("formButton").addEventListener("click", getWaterLevels, false);
+
+	// setup initial demo
+	const blockValues = document.querySelector("#formValues");
+	blockValues.value = "0,4,0,0,0,6,0,6,4,0";
+	getWaterLevels();
+
+
+</script>
